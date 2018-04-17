@@ -82,12 +82,16 @@ class XCoinAPI:
 		logging.info(rgParams)
 		resultJson = self.xcoinApiCall(endpoint, rgParams)
 		logging.info(resultJson)
-                result = resultJson["status"]
-		data = resultJson["data"][0]
-		units = float(data['units']) - float(data['fee'])
-		units = self.truncate(units, 4)
 
-		return units
+                result = resultJson["status"]
+		datas = resultJson["data"]
+		unitTotal = 0
+		for data in datas:
+		    units = float(data['units']) - float(data['fee'])
+		    unitTotal += units
+		unitTotal = self.truncate(unitTotal, 4)
+
+		return unitTotal
 	 	
 	def infoBalance(self, currency):
 		endpoint = "/info/balance"
