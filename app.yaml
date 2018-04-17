@@ -1,0 +1,17 @@
+runtime: python27
+api_version: 1
+threadsafe: true
+
+handlers:
+- url: /
+  script: main.app
+- url: /task/.*
+  script: main.app
+- url: /telegram/.*
+  script: telegram.app
+
+libraries:
+- name: webapp2
+  version: latest
+- name: jinja2
+  version: latest

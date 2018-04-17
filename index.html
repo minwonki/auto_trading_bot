@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+{% autoescape true %}
+<html>
+  <head>
+  </head>
+  <body>
+    <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Buy</th>
+        <th>Volatility</th>
+        <th>Unit</th>
+        <th>Send</th>
+        <th>Date</th>
+        <th>Delete</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for coin in coins %}
+      <tr>
+        <td>{{ coin.name }}</td>
+        <td>{{ coin.buy }}</td>
+        <td>{{ coin.volatility }}</td>
+        <td>{{ coin.units }}</td>
+        <td>{{ coin.notice }}</td>
+        <td>{{ coin.date }}</td>
+        <td>
+	<form action="/task/delete" method='post'>
+          <input type="hidden" value="{{ coin.key.urlsafe() }}" name="urlsafe">
+          <input type="submit" value="Del">
+        </form>
+        </td>
+      <tr>
+      {% endfor %}
+    </tbody>
+    </table>
+      <form action="/task/add" method="post">
+         <div>
+           Coin name:<br>
+           <input type="text" name="name"><br>
+         </div>
+         <div>
+           Coin buy:<br>
+           <input type="text" name="buy"><br>
+         </div>
+         <div>
+           Coin noise:<br>
+           <input type="text" name="noise"><br>
+         </div>
+         <div>
+           Coin volatility:<br>
+           <input type="text" name="volatility"><br>
+         </div>
+         <div>
+           <input type="submit" value="Add">
+         </div>
+      </form>
+  </body>
+</html>
+{% endautoescape %}
+

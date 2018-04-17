@@ -1,0 +1,9 @@
+cron:
+- description: "daily message"
+  url: /task/notice
+  schedule: every 1 minutes
+  timezone: Asia/Seoul
+- description: "calc buy price"
+  url: /task/calc
+  schedule: every day 00:01
+  timezone: Asia/Seoul
